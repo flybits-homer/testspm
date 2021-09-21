@@ -4,21 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "Flybits",
-    platforms: [
-        .iOS(.v11)
-    ],
+    name: "testspm",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "Flybits",
-            targets: ["FlybitsSDK"])
+            name: "testspm",
+            targets: ["testspm"]),
+        .library(name: "FlybitsSDK", targets: ["FlybitsSDK"])
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .binaryTarget(name: "FlybitsSDK",
-                      url: "https://flybits.jfrog.io/artifactory/SPM/Flybits/3.7.1/FlybitsSDK.zip",
-                      checksum: "3adca1086c8890535205a2d4a9d66ad3fee4019b66ab8e623449015338ba8679")
+        .binaryTarget(name: "FlybitsSDK", url: "https://flybits.jfrog.io/artifactory/SPM/Flybits/3.7.1/FlybitsSDK.xcframework.zip", checksum: "eb86b9a91309aa71c1ee4563211044f4f1faff0e419c5d540f42a76550cf75ca"),
+        .target(
+            name: "testspm",
+            dependencies: []),
+        .testTarget(
+            name: "testspmTests",
+            dependencies: ["testspm"]),
     ]
 )
